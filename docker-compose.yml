@@ -3,15 +3,24 @@
 version: '3.4'
 
 services:
+  simplegateway:
+    image: simplegateway
+    build:
+      context: ./SimpleGateway
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5001
+    depends_on:
+      - simpleapi
   simpleapi:
     image: simpleapi
     build:
       context: ./SimpleAPI
       dockerfile: ./Dockerfile
     ports:
-      - 8080:7001
-    depends_on:
-      - sql
+      - 7000:7001
+    # depends_on:
+    #   - sql
   simpleconsole:
     image: simpleconsole
     depends_on:
@@ -19,13 +28,13 @@ services:
     build:
       context: ./SimpleConsole
       dockerfile: ./Dockerfile
-  sql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
-      - 1433:1433
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
-    volumes:
-      - /c/volume/data:/var/opt/mssql/data
-      - /c/volume/logs:/var/opt/mssql/log
+  # sql:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   ports:
+  #     - 1433:1433
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=YourStrong@Passw0rd
+  #   volumes:
+  #     - /c/volume/data:/var/opt/mssql/data
+  #     - /c/volume/logs:/var/opt/mssql/log

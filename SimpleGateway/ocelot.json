@@ -1,0 +1,31 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/Home",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "simpleapi",
+                    "Port": 7001
+                }
+            ],
+            "UpstreamPathTemplate": "/sql",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "DownstreamPathTemplate": "/Simple",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "simpleapi",
+                    "Port": 7001
+                }
+            ],
+            "UpstreamPathTemplate": "/api",
+            "UpstreamHttpMethod": [ "Get" ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost/"
+    }
+}
